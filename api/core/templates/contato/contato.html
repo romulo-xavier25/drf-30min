@@ -1,0 +1,50 @@
+{% extends 'app.html' %}
+
+{% block title %} Formulário de contato {% endblock %}
+
+{% block content %}
+
+    <div class="offset-1 col-10 list-div">
+        <h1 class="h4">Contato</h1>
+
+        {% if messages %}
+
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}> {{ message }} </li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+        
+        <div class="col-4 customForms">
+            <form action="" method="post">
+                {% csrf_token %}
+                
+                <p>
+                    <input type="text" name="name" class="form-control" placeholder="Nome" required>
+                </p>
+
+                <p>
+                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                </p>
+
+                <p>
+                    <input id="phone" type="tel" name="phone" class="form-control" placeholder="Telefone" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" required>
+                </p>
+
+                <p>
+                    <input type="text" name="subject" class="form-control" placeholder="Assunto" required>
+                </p>
+
+                <p>
+                    <textarea name="message" placeholder="Deixe sua mensagem:" class="form-control" required></textarea>
+                </p>
+
+                <input type="submit" class="btn btn-success" value="Enviar">
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}

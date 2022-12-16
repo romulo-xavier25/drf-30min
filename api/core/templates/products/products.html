@@ -1,0 +1,40 @@
+{% extends 'app.html' %}
+
+{% block title %} Lista de produtos {% endblock %}
+
+{% block content %}
+
+    <div class="offset-1 col-10 list-div">
+        <h1 class="h4">Produtos</h1>
+
+        <div class="col-12 blocoBtnCadastrar">
+            <a class="add-div" href="{% url 'product-create' %}">
+                <i class="fas fa-plus"></i>
+                Adicionar Produto
+            </a>
+        </div>
+
+        {% if messages %}
+
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}> {{ message }} </li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+
+        <ul class="products-list">
+            {% for product in products %}
+                <li class="product-item">
+                    <span> <a href="{{product.id}}"> {{product.name}} </a> </span>
+                    <span> <a href="delete/{{product.id}}" title="Deletar"> <i class="fas fa-trash"></i> </a> </span>
+                    <span> <a href="edit/{{product.id}}" title="Editar"><i class="fas fa-edit"></i></a> </span>
+                    <span> <a href="{{product.id}}/transaction" title="Comprar"> <i class="fas fa-wallet"></i> </a> </span>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'app.html' %}
+
+{% block title %} Lista de Transações {% endblock %}
+
+{% block content %}
+
+    <div class="offset-1 col-10 list-div">
+        <h1 class="h4">Transações</h1>
+
+        {% if messages %}
+
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}> {{ message }} </li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+
+        <table id="datatable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>code</th>
+                    <th>status</th>
+                    <th>valor</th>
+                    <th>produto</th>
+                    <th>Finalizar pedido</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{transaction.id}}</td>
+                    <td><a href="{{transaction.id}}"> {{transaction.code}} </a></td>
+                    <td>{{transaction.status}}</td>
+                    <td>{{transaction.value}}</td>
+                    <td>--</td>
+                    <td> <a class="btn btn-primary" href="products/{{transaction.id}}">Concluir</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

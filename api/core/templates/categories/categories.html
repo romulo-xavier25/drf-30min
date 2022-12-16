@@ -1,0 +1,38 @@
+{% extends 'app.html' %}
+
+{% block title %} Lista das categorias {% endblock %}
+
+{% block content %}
+
+    <div class="offset-1 col-10 list-div">
+        <h1 class="h4">Categorias</h1>
+
+        <div class="col-12 blocoBtnCadastrar">
+            <a class="add-div" href="{% url 'category-create' %}">
+                <i class="fas fa-plus"></i>
+                    Adicionar Categoria
+            </a>
+        </div>
+
+        {% if messages %}
+
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}> {{ message }} </li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+
+        <ul class="categories-list">
+            {% for category in categories %}
+                <li class="product-item">
+                    <span> <a href="{{category.id}}"> {{category.name}} </a> </span>
+                    <span> <a href="delete/{{category.id}}"> <i class="fas fa-trash"></i> </a> </span>
+                    <span> <a href="edit/{{category.id}}"><i class="fas fa-edit"></i></a> </span>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

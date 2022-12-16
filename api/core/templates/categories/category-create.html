@@ -1,0 +1,20 @@
+{% extends 'app.html' %}
+
+{% block title %} Cadastrar categoria {% endblock %}
+
+{% block content %}
+
+    <div class="offset-1 col-10 list-div">
+        <h1 class="h4">Cadastrar Categoria</h1>
+        
+        <div class="col-4 customForms">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-success" value="Cadastrar Categoria">
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}
